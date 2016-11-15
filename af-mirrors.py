@@ -35,10 +35,10 @@ for line in p.stdout.readlines():
 
 found_mirrors = False
 for line in fileinput.input("/etc/apt-fast.conf", inplace=True):
-    match = re.match("MIRRORS\s*=\s*\[", line)
+    match = re.match("MIRRORS\s*=\s*\(", line)
     if match:
         found_mirrors = True
-        print("MIRRORS={0!s}".format(mirrors))
+        print("MIRRORS={0}".format(str(mirrors).replace("[","(").replace("]",")")))
     else:
         sys.stdout.write(line)
 
@@ -46,7 +46,7 @@ if not found_mirrors:
     print("couldn't find MIRRORS var, adding at the end")
     with open("/etc/apt-fast.conf", "a") as myfile:
         myfile.write("\n\n# This mirrors are found with sftl/af_mirrors.py\n")
-        myfile.write("MIRRORS={0!s}".format(mirrors))
+        myfile.write("MIRRORS={0}".format(str(mirrors).replace("[","(").replace("]",")")))
 
 
 # unstable experimental
