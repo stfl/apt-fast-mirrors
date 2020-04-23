@@ -89,7 +89,7 @@ for line in fileinput.input("/etc/apt-fast.conf", inplace=True):
             mirror_entry, _ = judge_mirror(mirror_entry)
             if mirror_entry is not None:
                 buf += quote(mirror_entry)
-             print(buf)
+            print(buf)
         else:
             sys.stdout.write(line)
             continue
