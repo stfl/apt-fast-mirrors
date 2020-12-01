@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from subprocess import Popen, PIPE, STDOUT, STDERR
+from subprocess import Popen, PIPE, STDOUT
 import os
 from shlex import shlex, quote
 import sys
@@ -12,9 +12,9 @@ if not os.geteuid() == 0:
     sys.exit("\nOnly root can run this script\n")
 
 popen_args = {
-    universal_newlines: True,
-    stdout: PIPE,
-    stderr: STDOUT,
+    "universal_newlines": True,
+    "stdout": PIPE,
+    "stderr": STDOUT,
 }
 
 # decide repo to use
