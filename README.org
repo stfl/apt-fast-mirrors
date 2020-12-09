@@ -1,0 +1,34 @@
+* apt-fast-mirrors
+A fastest mirror selector for apt-fast. Currently only works on Debian
+
+run `sudo python3 af-mirrors.py` to fetch the fastest mirrors and add the 10 fastest to the `MIRRORS` variable in `/etc/apt-fast.conf`.
+
+The fastest mirror is also added to `/etc/apt/sources.list.d/sources_<repo>.list`.
+
+* Prerequisites
+
+Install apt-fast
+
+#+BEGIN_SRC bash
+sudo add-apt-repository ppa:apt-fast/stable
+sudo apt-get update
+sudo apt-get install -y apt-fast
+#+END_SRC
+
+Install dependencies
+
+#+BEGIN_SRC bash
+sudo apt-get install -y lsb-release netselect-apt netselect
+#+END_SRC
+
+** Netselect on Ubuntu
+
+netselect and netselect-apt are not in the Ubuntu repositories. The deb packages can be downloaded from Debian Repo
+
+#+BEGIN_SRC bash
+wget http://ftp.debian.org/debian/pool/main/n/netselect/netselect_0.3.ds1-28+b1_amd64.deb
+wget http://ftp.debian.org/debian/pool/main/n/netselect/netselect-apt_0.3.ds1-26_all.deb
+
+sudo dpkg -i netselect_0.3.ds1-28+b1_amd64.deb
+sudo dpkg -i netselect-apt_0.3.ds1-26_all.deb
+#+END_SRC
