@@ -85,7 +85,7 @@ for line in fileinput.input("/etc/apt-fast.conf", inplace=True):
             found_mirrors = True
 
             buf = advert + 'MIRRORS=('
-            mirror_entry = tokens.get_token()
+            mirror_entry = ts.get_token()
             mirror_entry, _ = judge_mirror(mirror_entry)
             if mirror_entry is not None:
                 buf += quote(mirror_entry)
@@ -94,7 +94,7 @@ for line in fileinput.input("/etc/apt-fast.conf", inplace=True):
             sys.stdout.write(line)
             continue
     else:
-        for tok in tokens:
+        for tok in ts:
             if tok != ')':
                 mirror_toks.append(tok)
             else:
